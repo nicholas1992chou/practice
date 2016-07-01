@@ -1,4 +1,4 @@
-package com.zc.basic_practice;
+package com.zc.beans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Test {
 	static BanjiService banjiService = new BanjiServiceImpl();
 	static StudentService studentService = new StudentServiceImpl();
 	public static void main(String[] args) {
-		//Util.initData();
+		Util.initData();
 		
 		List<Banji> banjiList = Util.getBanjiList();
 		
@@ -93,7 +93,7 @@ public class Test {
 						Student student = new Student(name, sex,
 								Util.getDate(birth), banji, new Score(math,
 										english, chinese));
-						if(banjiList.add(banji)){
+						if(banji.getStudents().add(student)){
 							System.out.println("添加成功");
 						}else{
 							System.out.println("添加失败");
@@ -172,21 +172,21 @@ public class Test {
 							english = scanner.nextInt();
 							System.out.println("语文成绩：");
 							chinese = scanner.nextInt();
-
+							//更新字段
 							student3.setName(name);
 							student3.setSex(sex);
 							student3.setScore(new Score(math,english,chinese));
 							student3.setBirth(Util.getDate(birth));
 							student3.setBan(banji);
-							if(studentService.update(student3, banji)){
-								System.out.println("添加成功");
+							if(studentService.update(student3, banji) && banjiService.update(banji, banjiList)){
+								System.out.println("更新成功");
 							}else{
-								System.out.println("添加失败");
+								System.out.println("更新失败");
 							}
 						}
 						else
 							System.out.println("该姓名不存在");
-						//更新字段
+						
 						
 						break;
 					case 3:// 查询学生信息

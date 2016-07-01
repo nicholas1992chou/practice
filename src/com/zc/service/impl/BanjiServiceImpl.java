@@ -1,10 +1,12 @@
 package com.zc.service.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-import com.zc.basic_practice.Banji;
-import com.zc.basic_practice.Util;
+import com.zc.beans.Banji;
+import com.zc.beans.Util;
 import com.zc.service.BanjiService;
 
 public class BanjiServiceImpl implements BanjiService{
@@ -18,11 +20,11 @@ public class BanjiServiceImpl implements BanjiService{
 	}
 	public void delete(List<Banji> list, Integer id) {
 		boolean Searchflag = false;
-		for (Banji banji : list) {
-			if (banji.getId().equals(id)) {// 使用包装类比较数值相等，用equals
-				list.remove(banji);
+		ListIterator<Banji> listIterator = list.listIterator();
+		while(listIterator.hasNext()){
+			if(listIterator.next().getId().equals(id)){
+				listIterator.remove();
 				Searchflag = true;
-				break;
 			}
 		}
 		if (Searchflag) {
@@ -30,12 +32,24 @@ public class BanjiServiceImpl implements BanjiService{
 		} else
 			System.out.println("删除失败");
 	}
+	public boolean update(Banji banji, List<Banji> banjiList){
+		ListIterator<Banji> lIterator = banjiList.listIterator();
+		while(lIterator.hasNext()){
+			Banji banji2 = lIterator.next();
+			if(banji2.getId().equals(banji.getId())){
+				lIterator.set(banji);
+				return true;
+			}
+		}
+		return false;
+	}
 	public List<Integer> getBanIds(List<Banji> list){
 		if(list != null){
 			List<Integer> iList = new ArrayList<>();
 			System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			for(Banji banji : list){
-				System.out.println(banji.getId());
+				//System.out.println(banji.getId());
+				System.out.println(banji);
 				iList.add(banji.getId());
 				System.out.println(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 			}

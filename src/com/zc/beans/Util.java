@@ -1,4 +1,4 @@
-package com.zc.basic_practice;
+package com.zc.beans;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;

@@ -2,8 +2,8 @@ package com.zc.service;
 
 import java.util.List;
 
-import com.zc.basic_practice.Banji;
-import com.zc.basic_practice.Student;
+import com.zc.beans.Banji;
+import com.zc.beans.Student;
 
 public interface StudentService{
 	void delete(Integer bId, String name, List<Banji> banjiList);

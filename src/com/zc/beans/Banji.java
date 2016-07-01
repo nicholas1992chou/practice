@@ -1,4 +1,4 @@
-package com.zc.basic_practice;
+package com.zc.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,12 +11,19 @@ public class Banji implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static Integer count ;
+	
+	public static Integer getCount() {
+		return count;
+	}
+
+
 	private Integer stuCount = 0;
 	static{
 		count = 201600;
 		if(Util.fileExists()){//保存信息的文件存在
 			if( !Util.getBanjiList().isEmpty()){//集合里有元素
-				count = Util.getBanjiList().get(Util.getBanjiList().size()-1).getId();
+				List<Banji> bList = Util.getBanjiList();
+				count = bList.get(0).getCount();//获取已经创建的班级对象的个数
 			}
 		}	
 	}

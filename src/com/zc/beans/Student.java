@@ -1,4 +1,4 @@
-package com.zc.basic_practice;
+package com.zc.beans;
 import java.io.File;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
